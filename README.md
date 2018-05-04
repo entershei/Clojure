@@ -17,7 +17,7 @@
     * [Исходный код тестов](javascript/jstest/PrefixAtanExpTest.java)
  * *Сложная*. Дополнительное реализовать поддержку выражений в постфиксной записи:
     * `(2 3 +)` равно 5
-    * [Исходный код тестов](javascript/jstest/PrefixAtanExpTest.java)
+    * [Исходный код тестов](javascript/jstest/PostfixAtanExpTest.java)
 
 
 ## Домашнее задание 10. Объектные выражения на JavaScript
