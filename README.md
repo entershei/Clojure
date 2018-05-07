@@ -2,6 +2,17 @@
 
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
+
+## Домашнее задание 12. Линейная алгебра
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `linear.clj`.
+    * Исходный код тестов
+        * [Простой вариант](clojure/cljtest/LinearBinaryTest.java)
+        * [Сложный вариант](clojure/cljtest/LinearNaryTest.java)
+
+
 ## Исходный код к лекциям по Clojure
 
 [Скрипт с примерами](clojure/examples.clj)
