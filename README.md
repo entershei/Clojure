@@ -2,6 +2,16 @@
 
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
+## Исходный код к лекциям по Clojure
+
+[Скрипт с примерами](clojure/examples.clj)
+ * Лекция 1. Введение
+    * [Введение](clojure/examples/1_1_intro.clj)
+    * [Функции](clojure/examples/1_2_functions.clj)
+    * [Списки](clojure/examples/1_3_lists.clj)
+    * [Вектора](clojure/examples/1_4_vectors.clj)
+    * [Функции высшего порядка](clojure/examples/1_5_functions-2.clj)
+
 
 ## Домашнее задание 11. Обработка ошибок на JavaScript
 
@@ -47,7 +57,6 @@
     * Код должен находиться в файле `functionalExpression.js`.
     * [Исходный код тестов](javascript/jstest/FunctionalExpressionTest.java)
         * Запускать c аргументом `hard` или `easy`;
-
  * *Простая*. Дополнительное реализовать поддержку:
     * переменных: `y`, `z`;
     * унарных функций:
@@ -81,7 +90,6 @@
 
 Обратите внимание на реализацию функции `mCurry` в разделе про
 [функции высшего порядка](javascript/examples/functions-hi.js).
-
 
 
 ## Домашнее задание 8. Вычисление в различных типах
