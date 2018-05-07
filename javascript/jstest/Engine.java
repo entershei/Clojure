@@ -11,8 +11,8 @@ public interface Engine {
     Result<String> parsedToString();
 
     class Result<T> {
-        final String context;
-        final T value;
+        public final String context;
+        public final T value;
 
         public Result(final String context, final T value) {
             this.context = context;

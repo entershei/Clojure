@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public abstract class AbstractTests implements Cloneable {
-    protected final List<AbstractExpression> tests = new ArrayList<>();
+    public final List<AbstractExpression> tests = new ArrayList<>();
     private final Map<String, Operator<Double>> operators = new HashMap<>();
     private final Map<String, TExpr> nullary = new HashMap<>();
     private final List<AbstractExpression> variables = new ArrayList<>();

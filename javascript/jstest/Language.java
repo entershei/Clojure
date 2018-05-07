@@ -16,7 +16,7 @@ public class Language {
 
     protected AbstractTests abstractTests;
 
-    protected List<Expr<TExpr>> tests = new ArrayList<>();
+    public List<Expr<TExpr>> tests = new ArrayList<>();
 
     public Language(final BaseJavascriptTest.Dialect parsed, final BaseJavascriptTest.Dialect unparsed, final AbstractTests tests) {
         this.parsed = parsed;
@@ -30,7 +30,7 @@ public class Language {
         return !Character.isLetterOrDigit(ch) && "+-*/.".indexOf(ch) == -1;
     }
 
-    protected String addSpaces(final String expression, final Random random) {
+    public String addSpaces(final String expression, final Random random) {
         String spaced = expression;
         for (int n = StrictMath.min(10, 200 / expression.length()); n > 0;) {
             final int index = random.nextInt(spaced.length() + 1);
