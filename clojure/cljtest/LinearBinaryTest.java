@@ -99,7 +99,7 @@ public class LinearBinaryTest extends BaseTest {
         counter.passed();
     }
 
-    private void testing(final Engine.Result<?> result) {
+    protected void testing(final Engine.Result<?> result) {
         System.out.println("Testing " + result.context);
         counter.nextTest();
     }
@@ -113,7 +113,7 @@ public class LinearBinaryTest extends BaseTest {
     private void assertVector(final String context, final IPersistentVector vector, final Number... values) {
         assertEquals(context + ": length", vector.count(), values.length);
         for (int i = 0; i < values.length; i++) {
-            assertEquals(context + "[" + i + "]", 1e-3, ((Number) vector.nth(i)).doubleValue(), values[i].doubleValue());
+            assertEquals(context + ":" + i, 1e-3, ((Number) vector.nth(i)).doubleValue(), values[i].doubleValue());
         }
     }
 
@@ -121,7 +121,7 @@ public class LinearBinaryTest extends BaseTest {
         testing(result);
         assertEquals(result.context + ": length", result.value.count(), rows.length);
         for (int i = 0; i < rows.length; i++) {
-            assertVector(result.context + "[" + i + "]", (IPersistentVector) result.value.nth(i), rows[i]);
+            assertVector(result.context + ":" + i, (IPersistentVector) result.value.nth(i), rows[i]);
         }
         counter.passed();
     }
