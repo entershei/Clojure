@@ -25,6 +25,16 @@
               :else (+ (rec-fib (- n 1)) (rec-fib (- n 2)))))
          '(rec-fib 40))
 
+(example "Memoized Fibonacci"
+         '(def mem-fib
+            (memoize
+              (fn [n]
+                (cond
+                  (== 0 n) 1
+                  (== 1 n) 1
+                  :else (+ (mem-fib (- n 1)) (mem-fib (- n 2)))))))
+         '(mem-fib 90))
+
 (example "Tail-recursive Fibonacci"
          '(defn iter-fib [n]
            (letfn [(iter-fib' [n a b]
