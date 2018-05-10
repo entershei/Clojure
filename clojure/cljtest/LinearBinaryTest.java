@@ -6,7 +6,7 @@ import jstest.Engine;
 
 import java.util.Arrays;
 
-/**
+/**Expected
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class LinearBinaryTest extends BaseTest {
