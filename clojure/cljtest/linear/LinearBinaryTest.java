@@ -1,42 +1,48 @@
-package cljtest;
+package cljtest.linear;
 
+import cljtest.ClojureScript;
 import clojure.lang.IPersistentVector;
 import expression.BaseTest;
 import jstest.Engine;
 
 import java.util.Arrays;
 
-/**Expected
+/**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class LinearBinaryTest extends BaseTest {
-    public static final ClojureScript SCRIPT = new ClojureScript("linear.clj");
-    public static final ClojureFunction<IPersistentVector> VECTOR = vectorFunction("vector");
-
-    public static final ClojureFunction<IPersistentVector> V_ADD = vectorFunction("v+");
-    public static final ClojureFunction<IPersistentVector> V_SUB = vectorFunction("v-");
-    public static final ClojureFunction<IPersistentVector> V_MUL = vectorFunction("v*");
-
-    public static final ClojureFunction<Number> SCALAR = numberFunction("scalar");
-    public static final ClojureFunction<IPersistentVector> VECT = vectorFunction("vect");
-    public static final ClojureFunction<IPersistentVector> V_BY_S = vectorFunction("v*s");
-
-    public static final ClojureFunction<IPersistentVector> M_ADD = vectorFunction("m+");
-    public static final ClojureFunction<IPersistentVector> M_SUB = vectorFunction("m-");
-    public static final ClojureFunction<IPersistentVector> M_MUL = vectorFunction("m*");
-
-    public static final ClojureFunction<IPersistentVector> M_BY_S = vectorFunction("m*s");
-    public static final ClojureFunction<IPersistentVector> M_BY_V = vectorFunction("m*v");
-    public static final ClojureFunction<IPersistentVector> M_BY_M = vectorFunction("m*m");
-
-    public static final ClojureFunction<IPersistentVector> TRANSPOSE = vectorFunction("transpose");
-
-    static ClojureFunction<IPersistentVector> vectorFunction(final String name) {
-        return SCRIPT.function(name, IPersistentVector.class);
+    static {
+        ClojureScript.loadScript("linear.clj");
     }
 
-    static ClojureFunction<Number> numberFunction(final String name) {
-        return SCRIPT.function(name, Number.class);
+    public static final ClojureScript.F<IPersistentVector> VECTOR = vectorFunction("vector");
+
+    public static final ClojureScript.F<IPersistentVector> V_ADD = vectorFunction("v+");
+    public static final ClojureScript.F<IPersistentVector> V_SUB = vectorFunction("v-");
+    public static final ClojureScript.F<IPersistentVector> V_MUL = vectorFunction("v*");
+
+    public static final ClojureScript.F<Number> SCALAR = numberFunction("scalar");
+    public static final ClojureScript.F<IPersistentVector> VECT = vectorFunction("vect");
+    public static final ClojureScript.F<IPersistentVector> V_BY_S = vectorFunction("v*s");
+
+    public static final ClojureScript.F<IPersistentVector> M_ADD = vectorFunction("m+");
+    public static final ClojureScript.F<IPersistentVector> M_SUB = vectorFunction("m-");
+    public static final ClojureScript.F<IPersistentVector> M_MUL = vectorFunction("m*");
+
+    public static final ClojureScript.F<IPersistentVector> M_BY_S = vectorFunction("m*s");
+    public static final ClojureScript.F<IPersistentVector> M_BY_V = vectorFunction("m*v");
+    public static final ClojureScript.F<IPersistentVector> M_BY_M = vectorFunction("m*m");
+
+    public static final ClojureScript.F<IPersistentVector> TRANSPOSE = vectorFunction("transpose");
+
+    public static final double EPS = 1e-10;
+
+    static ClojureScript.F<IPersistentVector> vectorFunction(final String name) {
+        return ClojureScript.function(name, IPersistentVector.class);
+    }
+
+    static ClojureScript.F<Number> numberFunction(final String name) {
+        return ClojureScript.function(name, Number.class);
     }
 
     protected static Engine.Result<IPersistentVector> vector(final Number... xs) {
@@ -95,7 +101,7 @@ public class LinearBinaryTest extends BaseTest {
 
     private void assertScalar(final Engine.Result<Number> result, final Number value) {
         testing(result);
-        assertEquals(result.context, result.value, value);
+        assertEquals(result.context, value, result.value);
         counter.passed();
     }
 
@@ -111,15 +117,15 @@ public class LinearBinaryTest extends BaseTest {
     }
 
     private void assertVector(final String context, final IPersistentVector vector, final Number... values) {
-        assertEquals(context + ": length", vector.count(), values.length);
+        assertEquals(context + ": length", values.length, vector.count());
         for (int i = 0; i < values.length; i++) {
-            assertEquals(context + ":" + i, 1e-3, ((Number) vector.nth(i)).doubleValue(), values[i].doubleValue());
+            assertEquals(context + ":" + i, EPS, values[i].doubleValue(), ((Number) vector.nth(i)).doubleValue());
         }
     }
 
     protected void assertMatrix(final Engine.Result<IPersistentVector> result, final Number[]... rows) {
         testing(result);
-        assertEquals(result.context + ": length", result.value.count(), rows.length);
+        assertEquals(result.context + ": length", rows.length, result.value.count());
         for (int i = 0; i < rows.length; i++) {
             assertVector(result.context + ":" + i, (IPersistentVector) result.value.nth(i), rows[i]);
         }

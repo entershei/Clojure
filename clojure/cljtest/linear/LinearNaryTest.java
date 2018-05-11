@@ -1,4 +1,4 @@
-package cljtest;
+package cljtest.linear;
 
 import clojure.lang.IPersistentVector;
 import jstest.Engine;
@@ -70,7 +70,7 @@ public class LinearNaryTest extends LinearBinaryTest {
         assertException(M_BY_M.expectException(m123_456, v123));
     }
 
-    private void assertException(final Engine.Result<Throwable> result) {
+    private static void assertException(final Engine.Result<Throwable> result) {
         System.out.println("Testing " + result.context);
         System.out.println("    " + result.value.getClass().getSimpleName() + ": " + result.value.getMessage());
     }

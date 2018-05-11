@@ -15,11 +15,11 @@
 
 (defn v*s [v s] (mapv (partial * s) v))
 
-(defn m+ [a b] (mapv (partial v+) a b))
+(defn m+ [a b] (mapv v+ a b))
 
-(defn m- [a b] (mapv (partial v-) a b))
+(defn m- [a b] (mapv v- a b))
 
-(defn m* [a b] (mapv (partial v*) a b))
+(defn m* [a b] (mapv v* a b))
 
 (defn m*s [m s]
   (mapv (fn [v] (v*s v s)) m))
@@ -28,10 +28,18 @@
   (let [b (transpose b)]
     (mapv (fn [rowa]
             (mapv (fn [colb]
-                    (apply + (v* rowa colb)))
+                    (scalar rowa colb))
                   b))
           a)))
 
 (defn m*v [m v]
-  (mapv (fn [vi] (apply + (v* vi v))) m))
+  (mapv (fn [vi] (scalar vi v)) m))
 
+(defn s+ [a b]
+  (if (vector? a) (mapv s+ a b) (+ a b)))
+
+(defn s- [a b]
+  (if (vector? a) (mapv s- a b) (- a b)))
+
+(defn s* [a b]
+  (if (vector? a) (mapv s* a b) (* a b)))
